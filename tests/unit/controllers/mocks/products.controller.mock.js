@@ -35,6 +35,11 @@ const notFound = {
   message: "Product not found",
 };
 
+const manteigaRes = {
+  type: null,
+  message: { id: 1, name: "Manteiga" },
+};
+
 module.exports = {
   products,
   paoP,
@@ -42,4 +47,5 @@ module.exports = {
   paoStub,
   fubaStub,
   notFound,
+  manteigaRes,
 };

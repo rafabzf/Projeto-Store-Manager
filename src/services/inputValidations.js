@@ -1,3 +1,99 @@
+// const {
+//   schema,
+//   productRegisterSchema,
+//   salesRegisterSchema,
+// } = require('./schemas');
+
+// const idValidation = (id) => {
+//   const { error } = schema.validate(id);
+
+//   if (error) return { type: 'INVALID_VALUE', message: '"id" must be a number' }; 
+
+//   return {
+//     type: null,
+//     message: '',
+//   };
+// };
+
+// const registerValidation = (product) => {
+//   const { error } = productRegisterSchema.validate(product);
+
+//   if (error) {
+//     return {
+//       type: product.name ? 'INVALID_VALUE' : 'UNDEFINED_VALUE',
+//       message: error.message,
+//     };
+//   }
+
+//   return {
+//     type: null,
+//     message: '',
+//   };
+// };
+
+// const registerValidationSales = (sales, productsList) => {
+//   const errorSa = sales.map((i) => salesRegisterSchema.validate(i));
+
+//   if (errorSa.some((i) => i.error)) {
+//     const { error } = errorSa.find((i) => i.error);
+
+//     return {
+//       type: error.message
+//         .includes('required') ? 'UNDEFINED_VALUE' : 'INVALID_VALUE',
+//         message: error.message,
+//     };
+//   }
+
+//   const productsIds = productsList.map(({ id }) => +id);
+
+//   if (sales.some(({ idProduct }) => !productsIds.includes(idProduct))) {
+//     return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+//   }
+
+//   return {
+//     type: null,
+//     message: '',
+//   };
+// };
+
+// const salesValidationId = (sales, id) => {
+//   const salesId = sales.map(({ idSale }) => idSale);
+
+//   if (!salesId.includes(id)) {
+//     return {
+//       type: 'SALE_NOT_FOUND',
+//       message: 'Sale not found',
+//     };
+//   }
+
+//   return {
+//     type: null,
+//     message: '',
+//   };
+// };
+
+// const upSalesValidation = (sales, productsList, salesList, idSale) => {
+//   let error = registerValidationSales(sales, productsList);
+
+//   if (error.type) return error;
+
+//   error = salesValidationId(salesList, idSale);
+
+//   if (error.type) return error;
+
+//   return {
+//     type: null,
+//     message: '',
+//   };
+// };
+
+// module.exports = {
+//   idValidation,
+//   registerValidation,
+//   registerValidationSales,
+//   salesValidationId,
+//   upSalesValidation,
+// };
 const {
   schema,
   productRegisterSchema,
@@ -7,7 +103,7 @@ const {
 const idValidation = (id) => {
   const { error } = schema.validate(id);
 
-  if (error) return { type: 'INVALID_VALUE', message: '"id" must be a number' }; 
+  if (error) return { type: 'INVALID_VALUE', message: '"id" must be a number' };
 
   return {
     type: null,
@@ -31,7 +127,7 @@ const registerValidation = (product) => {
   };
 };
 
-const registerValidationSales = (sales, productsList) => {
+const registerValidationSales = (sales) => {
   const errorSa = sales.map((i) => salesRegisterSchema.validate(i));
 
   if (errorSa.some((i) => i.error)) {
@@ -40,46 +136,9 @@ const registerValidationSales = (sales, productsList) => {
     return {
       type: error.message
         .includes('required') ? 'UNDEFINED_VALUE' : 'INVALID_VALUE',
-        message: error.message,
+      message: error.message,
     };
   }
-
-  const productsIds = productsList.map(({ id }) => +id);
-
-  if (sales.some(({ idProduct }) => !productsIds.includes(idProduct))) {
-    return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
-  }
-
-  return {
-    type: null,
-    message: '',
-  };
-};
-
-const salesValidationId = (sales, id) => {
-  const salesId = sales.map(({ idSale }) => idSale);
-
-  if (!salesId.includes(id)) {
-    return {
-      type: 'SALE_NOT_FOUND',
-      message: 'Sale not found',
-    };
-  }
-
-  return {
-    type: null,
-    message: '',
-  };
-};
-
-const upSalesValidation = (sales, productsList, salesList, idSale) => {
-  let error = registerValidationSales(sales, productsList);
-
-  if (error.type) return error;
-
-  error = salesValidationId(salesList, idSale);
-
-  if (error.type) return error;
 
   return {
     type: null,
@@ -91,6 +150,4 @@ module.exports = {
   idValidation,
   registerValidation,
   registerValidationSales,
-  salesValidationId,
-  upSalesValidation,
 };
