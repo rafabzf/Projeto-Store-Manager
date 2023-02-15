@@ -10,4 +10,8 @@ route.get('/:id', controllerSales.salesListId);
 
 route.post('/', controllerSales.salesRegister);
 
+route.delete('/:id', controllerSales.salesDelete);
+
+route.put('/:id', controllerSales.salesUp);
+
 module.exports = route;

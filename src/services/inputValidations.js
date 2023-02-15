@@ -31,7 +31,7 @@ const registerValidation = (product) => {
   };
 };
 
-const registerValidationSales = (sales) => {
+const registerValidationSales = (sales, productsList) => {
   const errorSa = sales.map((i) => salesRegisterSchema.validate(i));
 
   if (errorSa.some((i) => i.error)) {
@@ -44,6 +44,43 @@ const registerValidationSales = (sales) => {
     };
   }
 
+  const productsIds = productsList.map(({ id }) => +id);
+
+  if (sales.some(({ idProduct }) => !productsIds.includes(idProduct))) {
+    return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  }
+
+  return {
+    type: null,
+    message: '',
+  };
+};
+
+const salesValidationId = (sales, id) => {
+  const salesId = sales.map(({ idSale }) => idSale);
+
+  if (!salesId.includes(id)) {
+    return {
+      type: 'SALE_NOT_FOUND',
+      message: 'Sale not found',
+    };
+  }
+
+  return {
+    type: null,
+    message: '',
+  };
+};
+
+const upSalesValidation = (sales, productsList, salesList, idSale) => {
+  let error = registerValidationSales(sales, productsList);
+
+  if (error.type) return error;
+
+  error = salesValidationId(salesList, idSale);
+
+  if (error.type) return error;
+
   return {
     type: null,
     message: '',
@@ -54,4 +91,6 @@ module.exports = {
   idValidation,
   registerValidation,
   registerValidationSales,
+  salesValidationId,
+  upSalesValidation,
 };

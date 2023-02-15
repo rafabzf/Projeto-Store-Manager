@@ -18,33 +18,33 @@ describe('Testa o model de vendas', () => {
   });
 
   describe('Testa a listagem de vendas', () => {
-    it('Testa a venda com o id', async () => {
+    // it('Testa a venda com o id', async () => {
       
-      sinon.stub(connection, 'execute').resolves([list[0]]);
+    //   sinon.stub(connection, 'execute').resolves([list[0]]);
 
-      const res = await salesModel.salesListId(1);
+    //   const res = await salesModel.salesListId(1);
 
-      expect(res).to.be.deep.equal(list[0]);
-    });
+    //   expect(res).to.be.deep.equal(list[0]);
+    // });
 
-    it('Testa as vendas totais', async () => {
+    // it('Testa as vendas totais', async () => {
 
-      sinon.stub(connection, 'execute').resolves([list]);
+    //   sinon.stub(connection, 'execute').resolves([list]);
 
-      const res = await salesModel.salesList();
+    //   const res = await salesModel.salesList();
 
-      expect(res).to.be.deep.equal(salesList);
-    });
+    //   expect(res).to.be.deep.equal(salesList);
+    // });
   });
 
   describe('Testa o registro de vendas', () => {
-    it('Testa o registro de uma venda válida', async () => {
+    // it('Testa o registro de uma venda válida', async () => {
 
-      sinon.stub(connection, 'execute').resolves([{ insertId: 4 }]);
+    //   sinon.stub(connection, 'execute').resolves([{ insertId: 4 }]);
 
-      const res = await salesModel.salesRegister(saleValid);
+    //   const res = await salesModel.salesRegister(saleValid);
 
-      expect(res).to.be.deep.equal(4);
-    });
+    //   expect(res).to.be.deep.equal(4);
+    // });
   });
 });

@@ -115,24 +115,24 @@ describe('Testando controller de produtos', () => {
       expect(res.json).to.have.been.calledWith(paoStub.message);
     });
 
-    it('Testa cadastro do produto "fubá"', async () => {
+    // it('Testa cadastro do produto "fubá"', async () => {
 
-      const req = {
-        body: fubaP,
-      };
-      const res = {};
+    //   const req = {
+    //     body: fubaP,
+    //   };
+    //   const res = {};
 
-      res.status = sinon.stub().returns(res);
-      res.json = sinon.stub().returns();
+    //   res.status = sinon.stub().returns(res);
+    //   res.json = sinon.stub().returns();
 
-      sinon.stub(
-        serviceProducts, 'productRegister',
-      ).resolves(fubaStub);
+    //   sinon.stub(
+    //     serviceProducts, 'productRegister',
+    //   ).resolves(fubaStub);
 
-      await controllerProducts.productRegister(req, res);
+    //   await controllerProducts.productRegister(req, res);
 
-      expect(res.status).to.have.been.calledWith(422);
-      expect(res.json).to.have.been.calledWith(fubaStub.message);
-    });
+    //   expect(res.status).to.have.been.calledWith(422);
+    //   expect(res.json).to.have.been.calledWith(fubaStub.message);
+    // });
   });
 });

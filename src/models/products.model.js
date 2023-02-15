@@ -2,6 +2,14 @@ const camelize = require('camelize');
 
 const connection = require('./connection');
 
+const productDeleteId = async (idProduct) => {
+  const { affectedRows } = await connection.execute(
+    'DELETE FROM StoreManager.products WHERE id = ?;', [idProduct],
+  );
+
+  return { affectedRows };
+};
+
 const productsList = async () => {
   const [res] = await connection.execute(
     'SELECT * FROM StoreManager.products',
@@ -26,8 +34,18 @@ const productRegister = async (name) => {
   return insertId;
 };
 
+const productSearch = async (search) => {
+  const [result] = await connection.execute(
+    `SELECT * FROM StoreManager.products
+    WHERE name LIKE ? ;`,
+    [`%${search}%`],
+  );
+
+  return camelize(result);
+};
+
 const productUp = async (name, idProduct) => {
-  const [{ affectedRows }] = await connection.execute(
+  const [result] = await connection.execute(
     `UPDATE StoreManager.products 
     SET 
     products.name = ?
@@ -36,7 +54,7 @@ const productUp = async (name, idProduct) => {
     [name, idProduct],
   );
 
-  return affectedRows;
+  return result;
 };
 
 module.exports = {
@@ -44,4 +62,6 @@ module.exports = {
   productsById,
   productRegister,
   productUp,
+  productDeleteId,
+  productSearch,
 };
