@@ -30,22 +30,7 @@ const saleValid = [
   },
 ];
 
-const resSale = {
-  id: 4,
-  itemsSold: [
-    {
-      productId: 1,
-      quantity: 12,
-    },
-    {
-      productId: 2,
-      quantity: 15,
-    },
-  ],
-};
-
 module.exports = {
   list,
   saleValid,
-  resSale,
 };

@@ -32,10 +32,16 @@ const ovo = {
   message: '"name" length must be at least 5 characters long'
 };
 
+const notFoundProduct = {
+  type: 'PRODUCT_NOT_FOUND',
+  message: 'Product not found'
+}
+
 module.exports = {
   products,
   productInvalid,
   productNew,
   arroz,
   ovo,
+  notFoundProduct,
 };
