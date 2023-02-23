@@ -57,10 +57,10 @@ const productUp = async (req, res) => {
 };
 
 module.exports = {
+  productDeleteId,
   productsList,
   productsById,
   productRegister,
-  productUp,
-  productDeleteId,
   productSearch,
+  productUp,
 };

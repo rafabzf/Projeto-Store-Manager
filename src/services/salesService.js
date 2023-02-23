@@ -100,7 +100,7 @@ const salesUp = async (upSaleId, sales) => {
 module.exports = {
   salesDelete,
   salesList,
-  salesRegister,
   salesListId,
+  salesRegister,
   salesUp,
 };

@@ -65,9 +65,9 @@ const salesUp = async (req, res) => {
 };
 
 module.exports = {
-  salesRegister,
+  salesDelete,
   salesList,
   salesListId,
+  salesRegister,
   salesUp,
-  salesDelete,
 };

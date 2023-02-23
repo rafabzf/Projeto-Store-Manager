@@ -15,7 +15,7 @@ const salesList = async () => {
     sp.sale_id, sp.product_id, sp.quantity, s.date
     FROM
     StoreManager.sales_products AS sp
-        INNER JOIN
+      INNER JOIN
     StoreManager.sales AS s
     ON s.id = sp.sale_id;`,
   );
@@ -74,9 +74,9 @@ const salesUp = async (idSale, sales) => {
 };
 
 module.exports = {
-  salesRegister,
+  salesDelete,
   salesList,
   salesListId,
-  salesDelete,
+  salesRegister,
   salesUp,
 };

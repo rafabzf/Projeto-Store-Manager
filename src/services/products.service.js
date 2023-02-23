@@ -95,10 +95,10 @@ const productUp = async (product, idProduct) => {
 };
 
 module.exports = {
+  productDeleteId,
   productsList,
   productsById,
   productRegister,
-  productUp,
-  productDeleteId,
   productSearch,
+  productUp,
 };
