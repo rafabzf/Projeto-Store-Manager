@@ -46,7 +46,7 @@ const registerValidationSales = (sales, productsList) => {
 
   const productsIds = productsList.map(({ id }) => +id);
 
-  if (sales.some(({ idProduct }) => !productsIds.includes(idProduct))) {
+  if (sales.some(({ productId }) => !productsIds.includes(productId))) {
     return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
   }
 
